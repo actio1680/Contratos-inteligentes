@@ -1,11 +1,15 @@
 pragma solidity ^0.6.0;
 // SPDX-License-Identifier: MIT
 
-// Contrato para mostrar la edad y el nombre de una persona. 
+// Este es un contrato inteligente que permite mostrar un nombre y edad, así como 
+// la modificación de dicha edad. El contrato es útil para realizar las primeras 
+// pruebas en el mundo de los smart contracts. 
+
 // Actio1680
 
+
 // Contrato principal
-contract ContratoBasico {
+contract ContratoEdad {
   // Variables
   string public nombre;
   uint public edad;
