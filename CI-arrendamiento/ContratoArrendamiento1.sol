@@ -1,10 +1,10 @@
 pragma solidity ^0.6.0;
 // SPDX-License-Identifier: MIT
 
-// Este es un contrato inteligente de arrendamiento que permite al titular del bien inmueble el alquilar por un 
-// período de tiempo determinado y una renta acordada.
+// Este es un contrato inteligente de arrendamiento que permite al titular del 
+// bien inmueble el alquilar por un período de tiempo determinado y una renta acordada. 
 
-//Actio1680
+// Actio1680
 
 contract ContratoArrendamiento1 {
 
@@ -20,7 +20,7 @@ contract ContratoArrendamiento1 {
   string public allanamientofuturo; //El artículo 5 de la Ley 30201, que modifica el artículo 594° del Código 
   // Procesal Civil, establece que el arrendatario se compromete a desocupar el inmueble de manera anticipada 
   // y sin condiciones y a renunciar a cualquier acción legal que pueda intentar para obtener la devolución del 
-  // inmueble una vez concluido el contrato de arrendamiento o en caso de incumplimiento del pago de la renta. 
+  // bien inmueble (1) una vez concluido el contrato de arrendamiento o (2) en caso de incumplimiento del pago de la renta. 
   // Esto se aplica de acuerdo con lo dispuesto en el mencionado artículo
 
   // Constructor que inicializa el contrato y establece el propietario y el inquilino
@@ -39,6 +39,12 @@ contract ContratoArrendamiento1 {
     allanamientofuturo = _allanamientofuturo; // "si", el arrendatario se allana al allanamiento futuro
   }
 
+  // Permite comparar la fecha de inicio del contrato con la fecha actual para verificar si el contrato ha expirado
+  function hasExpired() public view returns (bool) {
+  uint currentDate = now;
+  return currentDate >= fechafin;
+  }
+
  // Permite al titular del bien inmueble establecer la renta y la fecha fin del alquiler
   function terminosArrendamiento(uint _renta, uint _fechafin) public {
     require(arrendador == msg.sender, "Solo el arrendador puede establecer los terminos del alquiler.");
@@ -47,21 +53,15 @@ contract ContratoArrendamiento1 {
   }
 
   // Permite al titular del bien inmueble recibir la renta del alquiler
-  function payRent() public payable {
+  function pagarRenta() public payable {
     require(msg.value == renta, "El monto de la renta debe ser igual al precio del alquiler.");
     require(msg.sender == arrendatario, "Solo el arrendatario puede realizar la renta del alquiler.");
     arrendador.transfer(msg.value);
   }
 
   // Permite al titular del bien inmueble finalizar el alquiler antes del término acordado
-  function endLease() public {
+  function finalizarArrendamiento() public {
     require(arrendador == msg.sender, "Solo el propietario puede finalizar el alquiler.");
     arrendatario = address(0);
-  }
-
-  // Permite comparar la fecha de inicio del contrato con la fecha actual para verificar si el contrato ha expirado
-  function hasExpired() public view returns (bool) {
-  uint currentDate = now;
-  return currentDate >= fechafin;
   }
 }
