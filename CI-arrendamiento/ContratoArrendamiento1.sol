@@ -1,7 +1,8 @@
 pragma solidity ^0.6.0;
 // SPDX-License-Identifier: MIT
 
-// Este es un contrato inteligente de arrendamiento que permite al titular del bien inmueble el alquilar por un período de tiempo determinado y una renta acordada.
+// Este es un contrato inteligente de arrendamiento que permite al titular del bien inmueble el alquilar por un 
+// período de tiempo determinado y una renta acordada.
 
 //Actio1680
 
@@ -16,7 +17,11 @@ contract ContratoArrendamiento1 {
   uint public fechainicio; // Almacena la fecha de inicio del alquiler día-mes-año
   uint public fechafin;  // Almacena la duración del alquiler en meses
   uint public renta; // Precio de la renta en Wei, la renta es mensual
-  string public allanamientofuturo; //El artículo 5 de la Ley 30201, que modifica el artículo 594° del Código Procesal Civil, establece que el arrendatario se compromete a desocupar el inmueble de manera anticipada y sin condiciones y a renunciar a cualquier acción legal que pueda intentar para obtener la devolución del inmueble una vez concluido el contrato de arrendamiento o en caso de incumplimiento del pago de la renta. Esto se aplica de acuerdo con lo dispuesto en el mencionado artículo
+  string public allanamientofuturo; //El artículo 5 de la Ley 30201, que modifica el artículo 594° del Código 
+  // Procesal Civil, establece que el arrendatario se compromete a desocupar el inmueble de manera anticipada 
+  // y sin condiciones y a renunciar a cualquier acción legal que pueda intentar para obtener la devolución del 
+  // inmueble una vez concluido el contrato de arrendamiento o en caso de incumplimiento del pago de la renta. 
+  // Esto se aplica de acuerdo con lo dispuesto en el mencionado artículo
 
   // Constructor que inicializa el contrato y establece el propietario y el inquilino
     constructor( address payable _arrendador, string memory _dniarrendador, address _arrendatario, 
